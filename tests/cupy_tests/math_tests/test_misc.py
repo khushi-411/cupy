@@ -169,7 +169,7 @@ class TestMisc(unittest.TestCase):
 
     def test_fabs(self):
         self.check_unary('fabs')
-    
+
     def test_fabs_negative(self):
         self.check_unary_negative('fabs')
 
