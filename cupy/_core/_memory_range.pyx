@@ -13,10 +13,11 @@ cpdef pair[Py_ssize_t, Py_ssize_t] get_bound(ndarray array):
     cdef size_t i
 
     for i in range(array._shape.size()):
-        right += (array._shape[i] - 1) * array._strides[i]
-
-    if left > right:
-        left, right = right, left
+        tmp = (array._shape[i] - 1) * array._strides[i]
+        if tmp > 0:
+            right += tmp
+        else:
+            left += tmp
 
     ret.first = left
     ret.second = right + <Py_ssize_t>array.dtype.itemsize
