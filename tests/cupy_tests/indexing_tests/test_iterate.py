@@ -34,6 +34,42 @@ class TestFlatiter(unittest.TestCase):
             assert len(a.flat) == 24
             assert len(a[::2].flat) == 12
 
+    def test_eq(self):
+        for xp in (numpy, cupy):
+            a = xp.array([1, 2, 3])
+            b = xp.array([1, 2, 3])
+            self.assertTrue(a.all() == b.all(), cupy.flatiter.__eq__(a, b))
+
+    def test_ne(self):
+        for xp in (numpy, cupy):
+            a = xp.array([1, 2, 3])
+            b = xp.array([9, 5, 6])
+            self.assertTrue(a.all() == b.all(), cupy.flatiter.__ne__(a, b))
+
+    def test_ge(self):
+        for xp in (numpy, cupy):
+            a = xp.array([1, 2, 3])
+            b = xp.array([-1, 2, -3])
+            self.assertTrue(a.all() >= b.all(), cupy.flatiter.__ge__(a, b))
+
+    def test_le(self):
+        for xp in (numpy, cupy):
+            a = xp.array([-2, -1, 3])
+            b = xp.array([-4, -1, 4])
+            self.assertTrue(a.all() <= b.all(), cupy.flatiter.__le__(a, b))
+
+    def test_lt(self):
+        for xp in (numpy, cupy):
+            a = xp.array([1, 2, 3])
+            b = xp.array([4, 5, 6])
+            self.assertTrue((a < b).all(), cupy.flatiter.__lt__(a, b))
+
+    def test_gt(self):
+        for xp in (numpy, cupy):
+            a = xp.array([1, 2, 3])
+            b = xp.array([-4, -5, -6])
+            self.assertTrue((a > b).all(), cupy.flatiter.__gt__(a, b))
+
     @testing.numpy_cupy_array_equal()
     def test_copy(self, xp):
         a = testing.shaped_arange((2, 3, 4), xp)

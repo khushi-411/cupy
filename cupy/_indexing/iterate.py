@@ -127,17 +127,23 @@ class flatiter:
 
     # TODO(Takagi): Implement index
 
-    # TODO(Takagi): Implement __lt__
+    def __lt__(self, value):
+        return self < value
 
-    # TODO(Takagi): Implement __le__
+    def __le__(self, value):
+        return self <= value
 
-    # TODO(Takagi): Implement __eq__
+    def __eq__(self, value):
+        return self == value
 
-    # TODO(Takagi): Implement __ne__
+    def __ne__(self, value):
+        return self != value
 
-    # TODO(Takagi): Implement __ge__
+    def __ge__(self, value):
+        return self >= value
 
-    # TODO(Takagi): Implement __gt__
+    def __gt__(self, value):
+        return self > value
 
     def __len__(self):
         return self.base.size
